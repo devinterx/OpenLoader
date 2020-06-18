@@ -9,7 +9,8 @@ namespace OpenUniverse.Editor
 {
     public class ShaderVariantStripper : IPreprocessShaders
     {
-        private const string ShaderVariantCollectionAssetPath = "Assets/Runtime/OpenLoader/OpenLoaderShaders.shadervariants";
+        private const string ShaderVariantCollectionAssetPath =
+            "Assets/Runtime/OpenLoader/OpenLoaderShaders.shadervariants";
 
         private readonly ShaderVariantCollection _shaderVariantCollection;
         private ShaderVariantCollection.ShaderVariant _shaderVariantCache;

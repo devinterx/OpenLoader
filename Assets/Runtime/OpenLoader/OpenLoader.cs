@@ -185,7 +185,7 @@ namespace OpenUniverse.Runtime.OpenLoader
             if (_isRun) return;
             _isRun = true;
 
-            LoadScene(new Uri("stream://localhost/main-module"), "MainModule", () =>
+            LoadScene(new Uri("stream://localhost/mainmodule"), "MainModule", () =>
             {
                 const string resourceTag = "__openLoader";
                 /*
@@ -206,7 +206,7 @@ namespace OpenUniverse.Runtime.OpenLoader
                         // UnLoadResourceByKey(resourceKey, resourceTag);
                     }
                 );
-            }, true);
+            });
         }
 
         [UsedImplicitly]
