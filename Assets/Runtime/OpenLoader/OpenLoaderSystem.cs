@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using JetBrains.Annotations;
 using OpenUniverse.Runtime.OpenLoader.Loaders;
-using OpenUniverse.Runtime.OpenLoader.Views;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -21,10 +19,10 @@ namespace OpenUniverse.Runtime.OpenLoader
         public const string OpenLoaderSceneMagicWords = "OpenLoader";
 
         [UsedImplicitly]
-        public static OpenLoaderSystem Instance;
+        public new static Thread UnityThread;
 
         [UsedImplicitly]
-        public static Thread UnityThread;
+        public new static OpenLoaderSystem Instance => BaseOpenLoader.Instance as OpenLoaderSystem;
 
         public GameObject loaderView;
         public EventSystem eventSystem;
@@ -43,70 +41,10 @@ namespace OpenUniverse.Runtime.OpenLoader
             set => loaderView = value;
         }
 
-        [UsedImplicitly, SuppressMessage("ReSharper", "InconsistentNaming")]
-        public IOpenLoaderView _loaderView { get; set; }
-
-        [NonSerialized]
-        private bool _isInitialized;
-
-        [NonSerialized]
-        private bool _isRun;
-
-        private void OnEnable()
+        protected override void RunManifest()
         {
-            IsEnabled = true;
-
-            if (!Application.isPlaying) return;
-
-            SubscribeEvents();
-        }
-
-        private void OnDisable()
-        {
-            IsEnabled = false;
-
-            if (!Application.isPlaying) return;
-
-            UnSubscribeEvents();
-        }
-
-        private void Awake()
-        {
-            UnityThread = Thread.CurrentThread;
-            if (Instance == null) Instance = this;
-
-            if (!Application.isPlaying) return;
-
-            InitLoaders();
-
-            SubscribeEvents();
-
-            _isInitialized = true;
-        }
-
-        private void Update()
-        {
-            if (!Application.isPlaying || LoaderView == null) return;
-
-            if (_isInitialized && !_isRun && _loaderView.IsShowScreenLoader)
-            {
-                _loaderView.HideScreenLoader();
-                RunManifest();
-            }
-            else if (_isInitialized && !_isRun) RunManifest();
-        }
-
-        private void OnDestroy()
-        {
-            if (!Application.isPlaying) return;
-
-            UnSubscribeEvents();
-        }
-
-        private void RunManifest()
-        {
-            if (_isRun) return;
-            _isRun = true;
+            if (IsRunManifest) return;
+            IsRunManifest = true;
 
             LoadScene(new Uri("stream://localhost/mainmodule"), "MainModule", () =>
             {

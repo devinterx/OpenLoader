@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 using JetBrains.Annotations;
+using OpenUniverse.Runtime.OpenLoader.Views;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,6 +13,12 @@ namespace OpenUniverse.Runtime.OpenLoader.Loaders
 {
     public abstract partial class BaseOpenLoader : MonoBehaviour
     {
+        [UsedImplicitly]
+        protected static BaseOpenLoader Instance { get; set; }
+
+        [UsedImplicitly]
+        public static Thread UnityThread;
+
         [NonSerialized, UsedImplicitly]
         protected bool IsEnabled;
 
@@ -20,13 +28,78 @@ namespace OpenUniverse.Runtime.OpenLoader.Loaders
         [FormerlySerializedAs("UseAssetDatabase")]
         public bool useAssetDatabase;
 
-        protected void InitLoaders()
+        [NonSerialized]
+        protected bool IsRunManifest;
+
+        [UsedImplicitly, SuppressMessage("ReSharper", "InconsistentNaming")]
+        protected IOpenLoaderView _loaderView { get; set; }
+
+        [NonSerialized]
+        private bool _isInitialized;
+
+        private void OnEnable()
+        {
+            IsEnabled = true;
+
+            if (!Application.isPlaying) return;
+
+            SubscribeEvents();
+        }
+
+        private void OnDisable()
+        {
+            IsEnabled = false;
+
+            if (!Application.isPlaying) return;
+
+            UnSubscribeEvents();
+        }
+
+        private void OnDestroy()
+        {
+            if (!Application.isPlaying) return;
+
+            UnSubscribeEvents();
+        }
+
+        private void Awake()
+        {
+            UnityThread = Thread.CurrentThread;
+            if (Instance == null) Instance = this;
+
+            if (!Application.isPlaying) return;
+
+            InitLoaders();
+
+            SubscribeEvents();
+
+            _isInitialized = true;
+        }
+
+        private void Update()
+        {
+            if (!Application.isPlaying || _loaderView == null) return;
+
+            if (_isInitialized && !IsRunManifest && _loaderView.IsShowScreenLoader)
+            {
+                _loaderView.HideScreenLoader();
+                Instance.RunManifest();
+            }
+            else if (_isInitialized && !IsRunManifest) RunManifest();
+        }
+
+        private void InitLoaders()
         {
             if (_assetBundleLoaderQueue == null)
                 _assetBundleLoaderQueue = new CoroutineQueue(StartCoroutine, AssetBundleMaxConcurrentConnectionsCount);
 
             if (_resourceLoaderQueue == null)
                 _resourceLoaderQueue = new CoroutineQueue(StartCoroutine, ResourceMaxConcurrentConnectionsCount);
+        }
+
+        [UsedImplicitly]
+        protected virtual void RunManifest()
+        {
         }
 
         [UsedImplicitly]
