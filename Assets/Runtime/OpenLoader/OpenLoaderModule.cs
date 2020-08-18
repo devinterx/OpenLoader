@@ -6,12 +6,12 @@ namespace OpenUniverse.Runtime.OpenLoader
     {
         private void Awake()
         {
-            Debug.Log("Module Enabled");
+            // Debug.Log("Module Enabled");
         }
 
         private void OnDisable()
         {
-            Debug.Log("Module Disabled");
+            // Debug.Log("Module Disabled");
         }
     }
 }

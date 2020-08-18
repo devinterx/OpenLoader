@@ -5,6 +5,9 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
+/[Bb]uilds/
+/[Mm]emoryCaptures
+/[Aa]ssetBundles
 
 # Visual Studio 2015 cache directory
 /.vs/

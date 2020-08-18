@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1311175161
+CRC: 935978463
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d0a13080a4bc892b794780afb54ff754
+    Hash: f530058f740c6a1d9ee9b591db805ffa
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 809d4ec0a817e1fedb418584a529aca9
+    Hash: a6384e994b3b938c4860ca95cb4cfdea
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -42,6 +42,12 @@ ClassTypes:
 - Class: 157
   Script: {instanceID: 0}
 - Class: 196
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 850595691
   Script: {instanceID: 0}
 Assets:
 - Assets/OpenModules/MainModule.unity
