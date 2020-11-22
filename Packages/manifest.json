@@ -1,13 +1,23 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "OpenUniverse",
+      "url": "https://npm.pkg.github.com/@open-universe-games",
+      "scopes": [
+        "io.openuniverse"
+      ]
+    }
+  ],
   "dependencies": {
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.assetbundlebrowser": "1.7.0",
-    "com.unity.ide.rider": "2.0.5",
+    "com.unity.ide.rider": "2.0.7",
     "com.unity.render-pipelines.universal": "8.2.0",
     "com.unity.searcher": "4.3.1",
-    "com.unity.textmeshpro": "3.0.1",
+    "com.unity.textmeshpro": "3.0.3",
     "com.unity.ugui": "1.0.0",
+    "io.openuniverse.websocket": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
