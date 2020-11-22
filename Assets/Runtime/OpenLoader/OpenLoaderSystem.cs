@@ -46,28 +46,28 @@ namespace OpenUniverse.Runtime.OpenLoader
             if (IsRunManifest) return;
             IsRunManifest = true;
 
-            LoadScene(new Uri("stream://localhost/mainmodule"), "MainModule", () =>
-            {
-                const string resourceTag = "__openLoader";
-                /*
-                 * LoadByteArrayFromUrl(new Uri("resource://open-loader")... for Assets/Resources/open-loader.bytes
-                 * LoadByteArrayFromUrl(new Uri("stream://localhost/open-loader.bytes")... for Assets/StreamingAssets/open-loader.bytes
-                 */
-                LoadByteArrayFromUrl(new Uri("stream://localhost/open-loader.bytes"), resourceTag,
-                    (resourceKey, bytes) =>
-                    {
-                        if (bytes == null)
-                        {
-                            Debug.LogError("Bytes is empty");
-                            return;
-                        }
-
-                        // Debug.Log(resourceKey + "::" + Encoding.ASCII.GetString(bytes, 0, bytes.Length));
-                        UnLoadResourceByTag(resourceTag);
-                        // UnLoadResourceByKey(resourceKey, resourceTag);
-                    }
-                );
-            });
+            // LoadScene(new Uri("stream://localhost/mainmodule"), "MainModule", () =>
+            // {
+            //     const string resourceTag = "__openLoader";
+            //     /*
+            //      * LoadByteArrayFromUrl(new Uri("resource://open-loader")... for Assets/Resources/open-loader.bytes
+            //      * LoadByteArrayFromUrl(new Uri("stream://localhost/open-loader.bytes")... for Assets/StreamingAssets/open-loader.bytes
+            //      */
+            //     LoadByteArrayFromUrl(new Uri("stream://localhost/open-loader.bytes"), resourceTag,
+            //         (resourceKey, bytes) =>
+            //         {
+            //             if (bytes == null)
+            //             {
+            //                 Debug.LogError("Bytes is empty");
+            //                 return;
+            //             }
+            //
+            //             // Debug.Log(resourceKey + "::" + Encoding.ASCII.GetString(bytes, 0, bytes.Length));
+            //             UnLoadResourceByTag(resourceTag);
+            //             // UnLoadResourceByKey(resourceKey, resourceTag);
+            //         }
+            //     );
+            // });
         }
     }
 }

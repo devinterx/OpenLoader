@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 namespace OpenUniverse.Editor.OpenLoader
 {
     [CustomEditor(typeof(OpenLoaderSystem)), CanEditMultipleObjects]
-    public class OpenLoaderEditor : UnityEditor.Editor
+    public class OpenLoaderSystemEditor : UnityEditor.Editor
     {
         private SerializedProperty _loaderView;
         private SerializedProperty _eventSystem;

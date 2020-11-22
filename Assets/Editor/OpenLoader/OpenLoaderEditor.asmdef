@@ -1,7 +1,8 @@
 {
     "name": "OpenLoaderEditor",
     "references": [
-        "OpenLoader"
+        "OpenLoader",
+        "ReorderableListEditor"
     ],
     "includePlatforms": [
         "Editor"

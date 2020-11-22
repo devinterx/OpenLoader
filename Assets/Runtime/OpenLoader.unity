@@ -193,8 +193,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1333836525}
+  - component: {fileID: 1333836527}
   - component: {fileID: 1333836524}
+  - component: {fileID: 1333836528}
   m_Layer: 0
   m_Name: LoaderSystem
   m_TagString: Untagged
@@ -214,24 +215,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2146f3415c1744485130cf1f2d1798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   useAssetDatabase: 0
   loaderView: {fileID: 0}
   eventSystem: {fileID: 1980235653}
---- !u!4 &1333836525
-Transform:
+--- !u!224 &1333836527
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333836523}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 486.23767, y: 203.52666, z: -116.26372}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1333836528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333836523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ae174b35de9c54aaf50ec51b0c01da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1980235651
 GameObject:
   m_ObjectHideFlags: 0
